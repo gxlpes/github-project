@@ -26,7 +26,7 @@ const gitbio = document.querySelector(".githubBio");
 const repo = document.querySelector(".githubRepo");
 const joined = document.querySelector(".githubJoin");
 const update = document.querySelector(".githubUpdate");
-const website = document.querySelector("githubWebsite");
+const website = document.querySelector(".githubWebsite");
 const twitter = document.querySelector(".githubTwitter");
 const company = document.querySelector(".githubCompany");
 const locat = document.querySelector(".githubLocation");
@@ -56,13 +56,13 @@ async function getGitHubAPI() {
     user.innerHTML = data.name;
     username.innerHTML = data.login;
     gitbio.innerHTML = data.bio;
-    repo.innerHTML = data.public_repos;
-    joined.innerHTML = data.created_at;
+    repo.innerHTML = `${data.public_repos} repositories created`;
+    joined.innerHTML = `Joined in ${data.created_at}`;
     update.innerHTML = data.updated_at;
-    // website.innerHTML = data.blog;
-    // twitter.innerHTML = data.twitter_username;
-    // company.innerHTML = data.company;
-    locat.innerHTML = data.location;
+    website.innerHTML = data.blog === "" || data.blog === null ? "No website" : data.blog;
+    twitter.innerHTML = data.twitter_username === "" || data.twitter_username === null ? "No Twitter" : data.twitter_username;
+    company.innerHTML = data.company === "" || data.company === null ? "No website" : data.company;
+    locat.innerHTML = data.location === " " || data.location === null ? "No location" : data.location;
   }
   getUrl();
 }
