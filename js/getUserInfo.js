@@ -1,11 +1,5 @@
 // document.querySelector("button").addEventListener("click", getGitHubAPI);
 
-// document.body.addEventListener("keypress", (event) => {
-//   if (event.key === "Enter") {
-//     getGitHubAPI();
-//   }
-// });
-
 // async function getGitHubAPI() {
 //   const userInput = document.querySelector("input").value;
 //   const result = await fetch(`https://api.github.com/users/${userInput}`);
@@ -31,21 +25,17 @@ const twitter = document.querySelector(".githubTwitter");
 const company = document.querySelector(".githubCompany");
 const locat = document.querySelector(".githubLocation");
 
-btnSearch.addEventListener("click", () => {
-  const mainContainer = document.querySelector(".main-container");
-  const userContainer = document.querySelector(".user-page");
-  userContainer.style.display = "flex";
-  mainContainer.classList.add("hidden");
-  setInterval((mainContainer.style.display = "none"), 5000);
-});
-
 btnSearch.addEventListener("click", getGitHubAPI);
+document.body.addEventListener("keypress", function (event) {
+  if (event.key == "Enter") btnSearch.click();
+});
 
 let img = document.createElement("img");
 let photo = document.querySelector(".githubPhoto");
 
 async function getGitHubAPI() {
   const url = `https://api.github.com/users/${input.value}`;
+
   async function getUrl() {
     const response = await fetch(url);
     const data = await response.json();
@@ -53,12 +43,20 @@ async function getGitHubAPI() {
     img.src = data.avatar_url;
     photo.appendChild(img);
 
+    const date1 = new Date(data.created_at);
+    const month1 = date1.toLocaleString("en-US", { month: "short" });
+    const year1 = date1.getFullYear();
+
+    const date2 = new Date(data.updated_at);
+    const month2 = date2.toLocaleString("en-US", { month: "short" });
+    const year2 = date2.getFullYear();
+
     user.innerHTML = data.name;
     username.innerHTML = data.login;
     gitbio.innerHTML = data.bio;
     repo.innerHTML = `${data.public_repos} repositories created`;
-    joined.innerHTML = `Joined in ${data.created_at}`;
-    update.innerHTML = data.updated_at;
+    joined.innerHTML = `Joined in ${month1}/${year1}`;
+    update.innerHTML = `Last update in ${month2}/${year2}`;
     website.innerHTML = data.blog === "" || data.blog === null ? "No website" : data.blog;
     twitter.innerHTML = data.twitter_username === "" || data.twitter_username === null ? "No Twitter" : data.twitter_username;
     company.innerHTML = data.company === "" || data.company === null ? "No website" : data.company;
