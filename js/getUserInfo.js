@@ -12,7 +12,7 @@
 // }
 
 const input = document.querySelector("input");
-const btnSearch = document.querySelector("button");
+const btnSearch = document.querySelector(".btn-search");
 
 const user = document.querySelector(".githubUser");
 const username = document.querySelector(".githubUserName");
@@ -25,7 +25,7 @@ const twitter = document.querySelector(".githubTwitter");
 const company = document.querySelector(".githubCompany");
 const locat = document.querySelector(".githubLocation");
 
-btnSearch.addEventListener("click", getGitHubAPI);
+btnSearch.addEventListener("click", getGitHubUserInfo);
 document.body.addEventListener("keypress", function (event) {
   if (event.key == "Enter") btnSearch.click();
 });
@@ -33,7 +33,7 @@ document.body.addEventListener("keypress", function (event) {
 let img = document.createElement("img");
 let photo = document.querySelector(".githubPhoto");
 
-async function getGitHubAPI() {
+async function getGitHubUserInfo() {
   const url = `https://api.github.com/users/${input.value}`;
 
   async function getUrl() {

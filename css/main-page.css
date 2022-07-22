@@ -11,8 +11,13 @@
   opacity: 0.2;
 }
 
-:root {
+:root[color-mode="light"] {
   --color-main: #479658;
+  --color-black: #4a4a4a;
+}
+
+:root[color-mode="dark"] {
+  --color-main: #474747;
   --color-black: #4a4a4a;
 }
 
