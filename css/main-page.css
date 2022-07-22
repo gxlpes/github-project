@@ -63,3 +63,13 @@ input:focus {
   cursor: pointer;
   opacity: 0.6;
 }
+
+.user-page-link {
+  text-decoration: none;
+  color: white;
+}
+
+.user-page-link:active,
+.user-page-link:visited {
+  color: white;
+}
