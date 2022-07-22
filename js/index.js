@@ -20,26 +20,49 @@
 const input = document.querySelector("input");
 const btnSearch = document.querySelector("button");
 
-// const photo = document.querySelector(".githubPhoto");
-// const user = document.querySelector(".githubUser");
-// const username = document.querySelector(".githubUserName");
-// const gitbio = document.querySelector(".githubBio");
-// const repo = document.querySelector(".githubRepo");
-// const joined = document.querySelector(".githubJoin");
-// const update = document.querySelector(".githubUpdate");
-// const location = document.querySelector(".githubLocation");
-// const website = document.querySelector("githubWebsite");
-// const twitter = document.querySelector(".githubTwitter");
-// const company = document.querySelector(".githubCompany");
+const user = document.querySelector(".githubUser");
+const username = document.querySelector(".githubUserName");
+const gitbio = document.querySelector(".githubBio");
+const repo = document.querySelector(".githubRepo");
+const joined = document.querySelector(".githubJoin");
+const update = document.querySelector(".githubUpdate");
+const website = document.querySelector("githubWebsite");
+const twitter = document.querySelector(".githubTwitter");
+const company = document.querySelector(".githubCompany");
+const locat = document.querySelector(".githubLocation");
+
+btnSearch.addEventListener("click", () => {
+  const mainContainer = document.querySelector(".main-container");
+  const userContainer = document.querySelector(".user-page");
+  userContainer.style.display = "flex";
+  mainContainer.classList.add("hidden");
+  setInterval((mainContainer.style.display = "none"), 5000);
+});
 
 btnSearch.addEventListener("click", getGitHubAPI);
+
+let img = document.createElement("img");
+let photo = document.querySelector(".githubPhoto");
 
 async function getGitHubAPI() {
   const url = `https://api.github.com/users/${input.value}`;
   async function getUrl() {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+
+    img.src = data.avatar_url;
+    photo.appendChild(img);
+
+    user.innerHTML = data.name;
+    username.innerHTML = data.login;
+    gitbio.innerHTML = data.bio;
+    repo.innerHTML = data.public_repos;
+    joined.innerHTML = data.created_at;
+    update.innerHTML = data.updated_at;
+    // website.innerHTML = data.blog;
+    // twitter.innerHTML = data.twitter_username;
+    // company.innerHTML = data.company;
+    locat.innerHTML = data.location;
   }
   getUrl();
 }
