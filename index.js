@@ -1,9 +1,18 @@
-const ul = document.querySelector("ul");
+document.querySelector("button").addEventListener("click", getGitHubAPI);
+
+document.body.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    getGitHubAPI();
+  }
+});
 
 async function getGitHubAPI() {
-  const result = await fetch("https://api.github.com/users/gxlpes");
+  const userInput = document.querySelector("input").value;
+  const result = await fetch(`https://api.github.com/users/${userInput}`);
   const resultConverted = await result.json();
-  console.log(resultConverted);
+  if (resultConverted.message) {
+    console.log("error");
+  } else {
+    console.log(resultConverted);
+  }
 }
-
-getGitHubAPI();
