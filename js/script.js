@@ -24,3 +24,19 @@ const toggleColorButtons = document.querySelectorAll(".color-mode__btn");
 toggleColorButtons.forEach((btn) => {
   btn.addEventListener("click", toggle);
 });
+
+////////////////// color picker
+
+document.getElementById("colorPicker").addEventListener("input", myColor);
+
+function myColor() {
+  let color = document.getElementById("colorPicker").value;
+
+  let r = document.querySelector(":root");
+  let rs = getComputedStyle(r);
+
+  rs.getPropertyValue("--color-main");
+  r.style.setProperty("--color-main", `${color}`);
+
+  document.getElementById("box").value = color;
+}

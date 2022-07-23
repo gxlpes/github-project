@@ -7,18 +7,26 @@
 }
 
 ::placeholder {
-  color: var(--color-black);
+  color: var(--color-text-secondary);
   opacity: 0.2;
 }
 
 :root[color-mode="light"] {
+  --color-bg: white;
+  --color-text-primary: white;
+  --color-text-dark: #4a4a4a;
   --color-main: #479658;
-  --color-black: #4a4a4a;
 }
 
 :root[color-mode="dark"] {
-  --color-main: #474747;
-  --color-black: #4a4a4a;
+  --color-bg: #4a4a4a;
+  --color-text-primary: #4a4a4a;
+  --color-text-secondary: white;
+  --color-main: #479658;
+}
+
+body {
+  background-color: var(--color-bg);
 }
 
 .hidden {
@@ -30,7 +38,7 @@
   height: 100vh;
   margin-top: -5rem;
   letter-spacing: -0.1rem;
-  color: var(--color-black);
+  color: var(--color-text-secondary);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,8 +60,10 @@
 }
 
 input {
+  color: var(--color-text-secondary);
+  background-color: transparent;
   border: none;
-  border-bottom: 2px solid var(--color-black);
+  border-bottom: 2px solid var(--color-main);
 }
 
 input:focus {
@@ -63,7 +73,7 @@ input:focus {
 .btn-search {
   filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.284));
   padding: 0.5rem 2rem;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   border-radius: 5px;
   background-color: var(--color-main);
@@ -76,10 +86,10 @@ input:focus {
 
 .user-page-link {
   text-decoration: none;
-  color: white;
+  color: var(--color-text-primary);
 }
 
 .user-page-link:active,
 .user-page-link:visited {
-  color: white;
+  color: var(--color-text-primary);
 }

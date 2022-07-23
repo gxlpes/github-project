@@ -11,7 +11,7 @@
 //   }
 // }
 
-const input = document.querySelector("input");
+const input = document.querySelector(".userInput");
 const btnSearch = document.querySelector(".btn-search");
 
 const user = document.querySelector(".githubUser");
