@@ -52,7 +52,7 @@ async function getGitHubUserInfo() {
     const year2 = date2.getFullYear();
 
     user.innerHTML = data.name;
-    username.innerHTML = data.login;
+    username.innerHTML = `@${data.login}`;
     gitbio.innerHTML = data.bio;
     repo.innerHTML = `${data.public_repos} repositories created`;
     joined.innerHTML = `Joined in ${month1}/${year1}`;

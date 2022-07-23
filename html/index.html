@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/main-page.css" />
     <link rel="stylesheet" href="/css/user-page.css" />
+    <link rel="stylesheet" href="/css/repo-page.css">
     <title>GitHub Search</title>
   </head>
   <body>
@@ -42,9 +43,9 @@
       </div>
       <div class="content-page">
         <div class="info">
-          <p class="githubRepo"></p>
-          <p class="githubJoin"></p>
-          <p class="githubUpdate"></p>
+          <p class="githubRepo git-info"></p>
+          <p class="githubJoin git-info"></p>
+          <p class="githubUpdate git-info"></p>
         </div>
         <div class="links">
           <div class="first-column">
@@ -88,10 +89,11 @@
               </svg>
               <p class="githubCompany"></p>
             </div>
-            <a href="#" class="repos-btn">Repositories</a>
           </div>
         </div>
       </div>
+      <a href="#" class="repos-btn">Repositories</a>
+
       <div class="containerResultsRepos"></div>
   </body>
   <script src="/js/script.js"></script>

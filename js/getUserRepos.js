@@ -10,11 +10,13 @@ async function getGitHubUserRepos() {
     const dataRepos = await response.json();
 
     dataRepos.forEach((repo) => {
-      const html = `<h1>${repo.name}</h1>
-      <p>${repo.description}</p>
-      <p><a href=${repo.url}>Link</a></p>
-      <p><a href=${repo.homepage}>Homepage</a><p>
-      <p>${repo.language}</p>`;
+      const html = `<div class="repo-container">
+      <h1  class="repo-title">${repo.name}</h1>
+      <p class=" repo-desc">${repo.description}</p>
+      <p  class="repo-link>"<a href=${repo.url}>Link</a></p>
+      <p  class="repo-live>"<a href=${repo.homepage}>Homepage</a><p>
+      <p class=" repo-main">${repo.language}</p>
+      </div>`;
 
       containerResultsRepos.insertAdjacentHTML("beforeend", html);
     });

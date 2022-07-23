@@ -1,0 +1,8 @@
+.repo-container {
+  background-color: #bebebe;
+  padding: 2rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}

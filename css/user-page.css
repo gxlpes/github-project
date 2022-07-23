@@ -52,13 +52,17 @@ img {
 }
 
 .info {
-  background-color: white;
-  padding: 2rem;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 2rem;
+}
+
+.git-info {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
 }
 
 .first-column,
@@ -68,7 +72,7 @@ img {
 
 .links {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 svg {
