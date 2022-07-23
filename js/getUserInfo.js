@@ -1,37 +1,24 @@
-// document.querySelector("button").addEventListener("click", getGitHubAPI);
-
-// async function getGitHubAPI() {
-//   const userInput = document.querySelector("input").value;
-//   const result = await fetch(`https://api.github.com/users/${userInput}`);
-//   const resultConverted = await result.json();
-//   if (resultConverted.message) {
-//     console.log("error");
-//   } else {
-//     console.log(resultConverted);
-//   }
-// }
-
 const input = document.querySelector(".userInput");
 const btnSearch = document.querySelector(".btn-search");
 
-const user = document.querySelector(".githubUser");
-const username = document.querySelector(".githubUserName");
-const gitbio = document.querySelector(".githubBio");
-const repo = document.querySelector(".githubRepo");
-const joined = document.querySelector(".githubJoin");
-const update = document.querySelector(".githubUpdate");
-const website = document.querySelector(".githubWebsite");
-const twitter = document.querySelector(".githubTwitter");
-const company = document.querySelector(".githubCompany");
-const locat = document.querySelector(".githubLocation");
+const userInfoContainer = document.querySelector(".user-page");
+
+// const user = document.querySelector(".githubUser");
+// const username = document.querySelector(".githubUserName");
+// const gitbio = document.querySelector(".githubBio");
+// const repo = document.querySelector(".githubRepo");
+// const joined = document.querySelector(".githubJoin");
+// const update = document.querySelector(".githubUpdate");
+// const website = document.querySelector(".githubWebsite");
+// const twitter = document.querySelector(".githubTwitter");
+// const company = document.querySelector(".githubCompany");
+// const locat = document.querySelector(".githubLocation");
 
 btnSearch.addEventListener("click", getGitHubUserInfo);
+
 document.body.addEventListener("keypress", function (event) {
   if (event.key == "Enter") btnSearch.click();
 });
-
-let img = document.createElement("img");
-let photo = document.querySelector(".githubPhoto");
 
 async function getGitHubUserInfo() {
   const url = `https://api.github.com/users/${input.value}`;
@@ -39,9 +26,6 @@ async function getGitHubUserInfo() {
   async function getUrl() {
     const response = await fetch(url);
     const data = await response.json();
-
-    img.src = data.avatar_url;
-    photo.appendChild(img);
 
     const date1 = new Date(data.created_at);
     const month1 = date1.toLocaleString("en-US", { month: "short" });
@@ -51,16 +35,78 @@ async function getGitHubUserInfo() {
     const month2 = date2.toLocaleString("en-US", { month: "short" });
     const year2 = date2.getFullYear();
 
-    user.innerHTML = data.name;
-    username.innerHTML = `@${data.login}`;
-    gitbio.innerHTML = data.bio;
-    repo.innerHTML = `${data.public_repos} repositories created`;
-    joined.innerHTML = `Joined in ${month1}/${year1}`;
-    update.innerHTML = `Last update in ${month2}/${year2}`;
-    website.innerHTML = data.blog === "" || data.blog === null ? "No website" : data.blog;
-    twitter.innerHTML = data.twitter_username === "" || data.twitter_username === null ? "No Twitter" : data.twitter_username;
-    company.innerHTML = data.company === "" || data.company === null ? "No website" : data.company;
-    locat.innerHTML = data.location === " " || data.location === null ? "No location" : data.location;
+    // user.innerHTML = data.name;
+    // username.innerHTML = `@${data.login}`;
+    // gitbio.innerHTML = data.bio;
+    // repo.innerHTML = `${data.public_repos} repositories created`;
+    // joined.innerHTML = `Joined in ${month1}/${year1}`;
+    // update.innerHTML = `Last update in ${month2}/${year2}`;
+    // website.innerHTML = data.blog === "" || data.blog === null ? "No website" : data.blog;
+    // twitter.innerHTML = data.twitter_username === "" || data.twitter_username === null ? "No Twitter" : data.twitter_username;
+    // company.innerHTML = data.company === "" || data.company === null ? "No website" : data.company;
+    // locat.innerHTML = data.location === " " || data.location === null ? "No location" : data.location;
+
+    const htmlUser = ` 
+    <a href="#" class="return">Return</a>
+    <div class="header-page">
+      <div class="githubPhoto"><img src="${data.avatar_url}"></div>
+      <div class="header-page-content">
+        <h2 class="githubUser">${data.name}</h2>
+        <h3 class="githubUserName">@${data.login}</h3>
+        <p class="githubBio">${data.bio}</p>
+      </div>
+    </div>
+    <div class="content-page">
+      <div class="info">
+        <p class="githubRepo git-info">${data.public_repos} repositories created</p>
+        <p class="githubJoin git-info">Joined in ${month1}/${year1}</p>
+        <p class="githubUpdate git-info">Last update in ${month2}/ ${year2}</p>
+      </div>
+      <div class="links">
+        <div class="first-column">
+          <div class="location-link link-container">
+            <svg viewBox="0 0 368.666 368.666" style="enable-background: new 0 0 368.666 368.666" xml:space="preserve">
+              <path
+                d="M184.333 0C102.01 0 35.036 66.974 35.036 149.297c0 33.969 11.132 65.96 32.193 92.515 27.27 34.383 106.572 116.021 109.934 119.479l7.169 7.375 7.17-7.374c3.364-3.46 82.69-85.116 109.964-119.51 21.042-26.534 32.164-58.514 32.164-92.485C333.63 66.974 266.656 0 184.333 0zm101.462 229.355c-21.956 27.687-80.92 89.278-101.462 110.581-20.54-21.302-79.483-82.875-101.434-110.552-18.228-22.984-27.863-50.677-27.863-80.087C55.036 78.002 113.038 20 184.333 20c71.294 0 129.297 58.002 129.296 129.297 0 29.412-9.625 57.096-27.834 80.058z"
+              />
+              <path
+                d="M184.333 59.265c-48.73 0-88.374 39.644-88.374 88.374s39.645 88.374 88.374 88.374 88.374-39.645 88.374-88.374-39.644-88.374-88.374-88.374zm0 156.748c-37.702 0-68.374-30.673-68.374-68.374 0-37.702 30.673-68.374 68.374-68.374s68.373 30.673 68.374 68.374c0 37.702-30.672 68.374-68.374 68.374z"
+              />
+            </svg>
+            <p class="githubLocation">${data.location === " " || data.location === null ? "No location" : data.location}</p>
+          </div>
+          <div class="website-link link-container">
+            <svg viewBox="0 0 195.085 195.085" style="enable-background: new 0 0 195.085 195.085" xml:space="preserve">
+              <path
+                d="M179.617 15.453c-.051-.05-.102-.1-.154-.149-18.689-18.549-48.477-20.463-69.37-4.441-2.091 1.599-3.776 3.053-5.302 4.575-.044.044-.087.088-.13.133L71.224 49.012c-2.929 2.929-2.929 7.678.001 10.606 2.93 2.93 7.679 2.929 10.606-.001l33.561-33.566c.035-.035.069-.07.104-.105 1.023-1.01 2.205-2.02 3.715-3.174 15.008-11.508 36.411-10.098 49.789 3.281.044.044.089.088.134.131 14.652 14.786 14.611 38.742-.124 53.483l-33.559 33.563c-2.929 2.929-2.929 7.678.001 10.606 1.465 1.464 3.384 2.196 5.303 2.196s3.839-.732 5.304-2.197l33.56-33.563c20.622-20.631 20.622-54.195-.002-74.819zM113.23 135.437l-33.541 33.542a9.483 9.483 0 0 0-.196.205c-3.708 3.648-8.059 6.449-12.945 8.333-13.995 5.418-29.888 2.07-40.481-8.524-14.768-14.784-14.768-38.84 0-53.619L59.624 81.83a7.5057 7.5057 0 0 0 2.197-5.305v-.013c0-4.143-3.357-7.494-7.5-7.494-2.135 0-4.062.895-5.428 2.328l-33.435 33.422c-20.61 20.628-20.612 54.195-.002 74.828 10.095 10.097 23.628 15.479 37.411 15.479a52.871 52.871 0 0 0 19.084-3.566c6.922-2.667 13.088-6.67 18.326-11.896.076-.075.15-.153.223-.232l33.337-33.337c2.929-2.93 2.929-7.678-.001-10.607-2.927-2.928-7.676-2.928-10.606 0z"
+              />
+              <path
+                d="M59.15 135.908c1.465 1.465 3.384 2.197 5.304 2.197 1.919 0 3.839-.732 5.303-2.196l66.164-66.161c2.93-2.929 2.93-7.678.001-10.606-2.929-2.93-7.678-2.929-10.606-.001l-66.164 66.161c-2.931 2.928-2.931 7.677-.002 10.606z"
+              />
+            </svg>
+            <p class="githubWebsite">${data.blog === "" || data.blog === null ? "No website" : data.blog}</p>
+          </div>
+        </div>
+        <div class="second-column">
+          <div class="twitter-link link-container">
+            <svg viewBox="0 0 512 512" style="enable-background: new 0 0 512 512" xml:space="preserve">
+              <path
+                d="M507.413 93.394c-3.709-2.51-8.607-2.383-12.174.327-3.612 2.735-9.474 5.087-16.138 7.016 18.245-21.301 18.623-35.541 18.408-38.893-.245-3.801-2.541-7.168-5.985-8.791-3.459-1.612-7.51-1.23-10.587 1.005-21.893 15.908-43.689 19.373-56.791 19.76-20.337-19.342-46.704-29.944-74.74-29.944-60.271 0-109.307 49.684-109.307 110.751 0 4.944.327 9.878.969 14.771C138.176 167.645 54.665 69.155 53.803 68.119c-2.184-2.617-5.5-4.041-8.929-3.714-3.398.296-6.444 2.235-8.148 5.189-29.005 50.322-11.286 94.725 6.505 121.327-1.837-1.092-3.342-2.097-4.372-2.857-3.143-2.337-7.337-2.725-10.852-.995a10.4562 10.4562 0 0 0-5.837 9.209c-.786 48.255 21.764 76.49 43.674 92.49-2.372.327-4.597 1.459-6.266 3.276-2.51 2.724-3.393 6.576-2.311 10.122 15.194 49.735 52.041 67.352 76.373 73.587-49.22 37.138-120.557 25.016-121.348 24.867-4.73-.831-9.464 1.663-11.408 6.082-1.939 4.413-.612 9.587 3.225 12.51 52.464 40.041 115.21 48.913 160.53 48.913 34.272 0 58.573-5.077 60.91-5.582 228.617-54.179 235.864-263.063 235.394-298.66 42.888-39.929 49.633-55.255 50.684-59.067 1.184-4.314-.51-8.906-4.214-11.422zm-64.13 58.358c-2.33 2.143-3.56 5.235-3.346 8.398.036.561 3.536 57.179-21.694 120.266-33.709 84.291-100.164 138.725-197.307 161.746-1.041.219-90.905 18.831-169.792-18.689 33.725-1.414 80.429-10.913 113.292-47.806 2.745-3.077 3.398-7.833 1.709-11.593-1.689-3.75-5.439-6.51-9.551-6.51h-.071c-2.76 0-50.337-.357-73.133-46.306 9.219.398 20.24-.145 29.122-4.237 4.092-1.888 6.51-6.1 6.005-10.574-.505-4.475-3.821-8.079-8.23-9.008-2.556-.541-57.649-12.836-66.143-72.693 8.464 3.526 19.015 6.257 29.51 4.685 4.031-.602 7.332-3.5 8.474-7.413 1.138-3.908-.107-8.13-3.184-10.809-2.383-2.07-54.327-48.273-30.541-107.973 28.158 29.332 108.46 102.368 205.833 96.786 3.107-.179 5.975-1.74 7.82-4.25 1.843-2.51 2.471-5.709 1.71-8.728a92.1248 92.1248 0 0 1-2.77-22.418c0-49.546 39.658-89.853 88.409-89.853 23.842 0 46.203 9.515 62.97 26.796 1.923 1.985 4.556 3.122 7.322 3.174 9.658.092 25.561-.949 43.531-7.633-5.359 6.275-12.852 13.622-23.332 21.852-3.622 2.847-4.954 7.735-3.276 12.026 1.684 4.301 6.056 7.02 10.566 6.607 2.112-.168 12.352-1.071 24.352-3.505-6.876 7.31-16.044 16.433-28.255 27.662z"
+              />
+            </svg>
+            <p class="githubTwitter">${data.twitter_username === "" || data.twitter_username === null ? "No Twitter" : data.twitter_username}</p>
+          </div>
+          <div class="company-link link-container">
+          <svg viewBox="0 0 176 176" style="enable-background: new 0 0 176 176" xml:space="preserve">
+          <path d="M155.706 176h-.005l-65.411-.125H20.294c-1.381 0-2.5-1.119-2.5-2.5V60.904c0-1.381 1.119-2.5 2.5-2.5h34.911V2.5c0-1.381 1.119-2.5 2.5-2.5h98c1.381 0 2.5 1.119 2.5 2.5v171c0 .664-.264 1.3-.734 1.77-.468.467-1.103.73-1.765.73zm-62.912-5.12 60.411.115V5h-93v53.404h30.089c1.381 0 2.5 1.119 2.5 2.5V170.88zm-70-.005h65V63.404h-65v107.471zm57.282-16.241H60.297c-1.381 0-2.5-1.119-2.5-2.5v-11.575c0-1.381 1.119-2.5 2.5-2.5h19.779c1.381 0 2.5 1.119 2.5 2.5v11.575c0 1.381-1.119 2.5-2.5 2.5zm-17.279-5h14.779v-6.575H62.797v6.575zm-12.505 5H30.513c-1.381 0-2.5-1.119-2.5-2.5v-11.575c0-1.381 1.119-2.5 2.5-2.5h19.779c1.381 0 2.5 1.119 2.5 2.5v11.575c0 1.381-1.119 2.5-2.5 2.5zm-17.279-5h14.779v-6.575H33.013v6.575zm105.701 3.716h-9.563c-1.381 0-2.5-1.119-2.5-2.5v-10.392c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.381-1.119 2.5-2.5 2.5zm-7.062-5h4.563v-5.392h-4.563v5.392zm-20.517 5h-9.563c-1.381 0-2.5-1.119-2.5-2.5v-10.392c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.381-1.119 2.5-2.5 2.5zm-7.063-5h4.563v-5.392h-4.563v5.392zm-23.996-16.333H60.297c-1.381 0-2.5-1.119-2.5-2.5v-11.575c0-1.381 1.119-2.5 2.5-2.5h19.779c1.381 0 2.5 1.119 2.5 2.5v11.575c0 1.38-1.119 2.5-2.5 2.5zm-17.279-5h14.779v-6.575H62.797v6.575zm-12.505 5H30.513c-1.381 0-2.5-1.119-2.5-2.5v-11.575c0-1.381 1.119-2.5 2.5-2.5h19.779c1.381 0 2.5 1.119 2.5 2.5v11.575c0 1.38-1.119 2.5-2.5 2.5zm-17.279-5h14.779v-6.575H33.013v6.575zm105.701 1.422h-9.563c-1.381 0-2.5-1.119-2.5-2.5v-10.391c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.391c0 1.381-1.119 2.5-2.5 2.5zm-7.062-5h4.563v-5.391h-4.563v5.391zm-20.517 5h-9.563c-1.381 0-2.5-1.119-2.5-2.5v-10.391c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.391c0 1.381-1.119 2.5-2.5 2.5zm-7.063-5h4.563v-5.391h-4.563v5.391zm-23.996-14.04H60.297c-1.381 0-2.5-1.119-2.5-2.5V95.324c0-1.381 1.119-2.5 2.5-2.5h19.779c1.381 0 2.5 1.119 2.5 2.5v11.575c0 1.381-1.119 2.5-2.5 2.5zm-17.279-5h14.779v-6.575H62.797v6.575zm-12.505 5H30.513c-1.381 0-2.5-1.119-2.5-2.5V95.324c0-1.381 1.119-2.5 2.5-2.5h19.779c1.381 0 2.5 1.119 2.5 2.5v11.575c0 1.381-1.119 2.5-2.5 2.5zm-17.279-5h14.779v-6.575H33.013v6.575zm105.701-.871h-9.563c-1.381 0-2.5-1.119-2.5-2.5V90.637c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.38-1.119 2.499-2.5 2.499zm-7.062-5h4.563v-5.392h-4.563v5.392zm-20.517 5h-9.563c-1.381 0-2.5-1.119-2.5-2.5V90.637c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.38-1.119 2.499-2.5 2.499zm-7.063-5h4.563v-5.392h-4.563v5.392zM80.076 86.781H60.297c-1.381 0-2.5-1.119-2.5-2.5V72.706c0-1.381 1.119-2.5 2.5-2.5h19.779c1.381 0 2.5 1.119 2.5 2.5v11.576c0 1.38-1.119 2.499-2.5 2.499zm-17.279-5h14.779v-6.576H62.797v6.576zm-12.505 5H30.513c-1.381 0-2.5-1.119-2.5-2.5V72.706c0-1.381 1.119-2.5 2.5-2.5h19.779c1.381 0 2.5 1.119 2.5 2.5v11.576c0 1.38-1.119 2.499-2.5 2.499zm-17.279-5h14.779v-6.576H33.013v6.576zm105.701-3.164h-9.563c-1.381 0-2.5-1.119-2.5-2.5V65.726c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.391c0 1.381-1.119 2.5-2.5 2.5zm-7.062-5h4.563v-5.391h-4.563v5.391zm-20.517 5h-9.563c-1.381 0-2.5-1.119-2.5-2.5V65.726c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.391c0 1.381-1.119 2.5-2.5 2.5zm-7.063-5h4.563v-5.391h-4.563v5.391zm34.642-19.91h-9.563c-1.381 0-2.5-1.119-2.5-2.5V40.815c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.38-1.119 2.5-2.5 2.5zm-7.062-5h4.563v-5.392h-4.563v5.392zm-20.517 5h-9.563c-1.381 0-2.5-1.119-2.5-2.5V40.815c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.38-1.119 2.5-2.5 2.5zm-7.063-5h4.563v-5.392h-4.563v5.392zm-20.517 5h-9.563c-1.381 0-2.5-1.119-2.5-2.5V40.815c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.38-1.119 2.5-2.5 2.5zm-7.062-5h4.563v-5.392h-4.563v5.392zm62.221-19.912h-9.563c-1.381 0-2.5-1.119-2.5-2.5V15.904c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.38-1.119 2.499-2.5 2.499zm-7.062-5h4.563v-5.392h-4.563v5.392zm-20.517 5h-9.563c-1.381 0-2.5-1.119-2.5-2.5V15.904c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.38-1.119 2.499-2.5 2.499zm-7.063-5h4.563v-5.392h-4.563v5.392zm-20.517 5h-9.563c-1.381 0-2.5-1.119-2.5-2.5V15.904c0-1.381 1.119-2.5 2.5-2.5h9.563c1.381 0 2.5 1.119 2.5 2.5v10.392c0 1.38-1.119 2.499-2.5 2.499zm-7.062-5h4.563v-5.392h-4.563v5.392z" />
+        </svg>
+            <p class="githubCompany">${data.company === "" || data.company === null ? "No website" : data.company}</p>
+          </div>
+        </div> 
+      </div>
+    </div>`;
+
+    userInfoContainer.insertAdjacentHTML("beforeend", htmlUser);
   }
   getUrl();
 }
