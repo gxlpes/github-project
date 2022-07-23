@@ -16,6 +16,7 @@ async function getGitHubUserRepos() {
       <p  class="repo-link>"<a href=${repo.url}>Link</a></p>
       <p  class="repo-live>"<a href=${repo.homepage}>Homepage</a><p>
       <p class=" repo-main">${repo.language}</p>
+      <div id="pagination-wrapper"></div>
       </div>`;
 
       containerResultsRepos.insertAdjacentHTML("beforeend", html);
