@@ -47,7 +47,6 @@ async function getGitHubUserInfo() {
     // locat.innerHTML = data.location === " " || data.location === null ? "No location" : data.location;
 
     const htmlUser = ` 
-    <a href="#" class="return">Return</a>
     <div class="header-page">
       <div class="githubPhoto"><img src="${data.avatar_url}"></div>
       <div class="header-page-content">

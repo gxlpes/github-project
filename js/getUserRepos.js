@@ -40,7 +40,7 @@ async function getGitHubUserRepos() {
 window.addEventListener("scroll", () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
-  if (clientHeight + scrollTop >= scrollHeight - 2) {
+  if (clientHeight + scrollTop >= scrollHeight - 10) {
     getGitHubUserRepos();
   }
 });
