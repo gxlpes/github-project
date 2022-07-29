@@ -97,7 +97,7 @@ body {
 
 .main-container {
   height: 100vh;
-  margin-top: -5rem;
+  margin-top: -1rem;
   letter-spacing: -0.1rem;
   color: var(--color-text-secondary);
   display: flex;
@@ -130,7 +130,6 @@ body {
 .btn-search {
   filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.284));
   padding: 0.5rem 2rem;
-  color: var(--color-text-primary);
   border: none;
   border-radius: 5px;
   background-color: var(--color-main);
@@ -143,7 +142,7 @@ body {
 
 .user-page-link {
   text-decoration: none;
-  color: var(--color-text-primary);
+  color: white;
 }
 
 .user-page-link:active,
@@ -153,4 +152,21 @@ body {
 
 .buttons-sections {
   display: none;
+}
+
+/* ///////////////////////////////////// animation main page */
+
+.main-container {
+  animation: appearPage 1s ease-in-out;
+}
+
+@keyframes appearPage {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
