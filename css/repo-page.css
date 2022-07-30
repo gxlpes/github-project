@@ -10,11 +10,14 @@
 .repo-container {
   border: 3px solid var(--color-main);
   width: 18rem;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
+  opacity: 0;
+  transition: 0.6s ease opacity;
 }
 
 .link-homepage {

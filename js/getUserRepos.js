@@ -52,12 +52,14 @@ async function getGitHubUserRepos() {
 
           </div>`;
 
+          containerResultsRepos.insertAdjacentHTML("beforeend", html);
+
           const repoContainer = document.querySelectorAll(".repo-container");
           window.setTimeout(function () {
-            repoContainer.style.opacity = 1;
-          }, 0);
-
-          containerResultsRepos.insertAdjacentHTML("beforeend", html);
+            repoContainer.forEach((cont) => {
+              cont.style.opacity = 1;
+            });
+          }, 500);
 
           const repoLangContainer = document.querySelectorAll(".repo-main");
 
