@@ -59,7 +59,7 @@ btnSearch.addEventListener("click", async function getGitHubUserInfo() {
       <div class="info">
         <p class="githubRepo git-info">Repos ${data.public_repos}</p>
         <p class="githubJoin git-info">Joined ${month1}/${year1}</p>
-        <p class="githubUpdate git-info">Updated ${month2}/ ${year2}</p>
+        <p class="githubUpdate git-info">Updated ${month2}/${year2}</p>
       </div>
       <div class="links">
         <div class="first-column">
