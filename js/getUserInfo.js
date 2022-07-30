@@ -4,17 +4,6 @@ const containerButtons = document.querySelector(".buttons-sections-main");
 
 const userInfoContainer = document.querySelector(".user-page");
 
-// const user = document.querySelector(".githubUser");
-// const username = document.querySelector(".githubUserName");
-// const gitbio = document.querySelector(".githubBio");
-// const repo = document.querySelector(".githubRepo");
-// const joined = document.querySelector(".githubJoin");
-// const update = document.querySelector(".githubUpdate");
-// const website = document.querySelector(".githubWebsite");
-// const twitter = document.querySelector(".githubTwitter");
-// const company = document.querySelector(".githubCompany");
-// const locat = document.querySelector(".githubLocation");
-
 document.body.addEventListener("keypress", function (event) {
   if (event.key == "Enter") btnSearch.click();
 });
@@ -34,17 +23,6 @@ btnSearch.addEventListener("click", async function getGitHubUserInfo() {
       const date2 = new Date(data.updated_at);
       const month2 = date2.toLocaleString("en-US", { month: "short" });
       const year2 = date2.getFullYear();
-
-      // user.innerHTML = data.name;
-      // username.innerHTML = `@${data.login}`;
-      // gitbio.innerHTML = data.bio;
-      // repo.innerHTML = `${data.public_repos} repositories created`;
-      // joined.innerHTML = `Joined in ${month1}/${year1}`;
-      // update.innerHTML = `Last update in ${month2}/${year2}`;
-      // website.innerHTML = data.blog === "" || data.blog === null ? "No website" : data.blog;
-      // twitter.innerHTML = data.twitter_username === "" || data.twitter_username === null ? "No Twitter" : data.twitter_username;
-      // company.innerHTML = data.company === "" || data.company === null ? "No website" : data.company;
-      // locat.innerHTML = data.location === " " || data.location === null ? "No location" : data.location;
 
       const htmlUser = ` 
     <div class="header-page">
@@ -107,7 +85,7 @@ btnSearch.addEventListener("click", async function getGitHubUserInfo() {
     </div>  
     `;
 
-      userInfoContainer.insertAdjacentHTML("beforeend", htmlUser);
+      userInfoContainer.insertAdjacentHTML("afterbegin", htmlUser);
       containerButtons.style.display = "flex";
     }
     getUrl();

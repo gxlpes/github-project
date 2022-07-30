@@ -13,7 +13,6 @@ async function getGitHubUserRepos() {
   async function getUrl() {
     const response = await fetch(url);
     const dataRepos = await response.json();
-    console.log(dataRepos);
 
     if (x < dataRepos.length) {
       const items = dataRepos.slice(x, y);
@@ -53,6 +52,11 @@ async function getGitHubUserRepos() {
 
           </div>`;
 
+          const repoContainer = document.querySelectorAll(".repo-container");
+          window.setTimeout(function () {
+            repoContainer.style.opacity = 1;
+          }, 0);
+
           containerResultsRepos.insertAdjacentHTML("beforeend", html);
 
           const repoLangContainer = document.querySelectorAll(".repo-main");
@@ -79,8 +83,6 @@ window.addEventListener("scroll", () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
   if (clientHeight + scrollTop >= scrollHeight - 2) {
-    if (reposBtn.clicked) {
-      getGitHubUserRepos();
-    }
+    getGitHubUserRepos();
   }
 });

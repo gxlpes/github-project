@@ -1,15 +1,19 @@
 .containerResultsRepos {
-  max-width: 75vw;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  width: 45rem;
 }
 
 .repo-container {
   border: 3px solid var(--color-main);
-  width: inherit;
+  width: 18rem;
   padding: 2rem;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
   gap: 1rem;
 }
 
@@ -59,5 +63,9 @@
   .bottom-repo {
     gap: 1rem;
     flex-direction: column;
+  }
+
+  .containerResultsRepos {
+    width: 100%;
   }
 }
