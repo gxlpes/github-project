@@ -1,3 +1,5 @@
+/* ///////////////////////////////////// config */
+
 * {
   margin: 0;
   padding: 0;
@@ -23,15 +25,15 @@ body {
   --color-black: #4a4a4a;
 }
 
-.colorpick-eyedropper-input-trigger {
-  display: none;
-}
+/* ///////////////////////////////////// user page */
 
 .user-page {
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 75vw;
+  margin-inline: auto;
 }
 
 .header-page {
@@ -40,6 +42,12 @@ body {
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+.header-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
 img {
@@ -52,7 +60,7 @@ img {
   display: flex;
   flex-direction: column;
   background-color: var(--color-main);
-  padding: 5rem;
+  padding: 3.5rem;
   border-radius: 8px;
 }
 
@@ -66,18 +74,19 @@ img {
 
 .git-info {
   background-color: white;
+  height: rem;
   padding: 2rem;
   border-radius: 8px;
-}
-
-.first-column,
-.second-column {
-  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .links {
+  margin-top: 1rem;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 svg {
@@ -91,4 +100,42 @@ svg {
   color: white;
   gap: 1rem;
   align-items: center;
+}
+
+.buttons-sections-main {
+  margin-top: 1rem;
+  gap: 1rem;
+  display: none;
+  text-align: center;
+}
+
+.link-sections {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+}
+
+@media screen and (max-width: 768px) {
+  .header-page {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header-page-content {
+    gap: 1rem;
+  }
+
+  .git-info {
+    padding: 1rem 1.5rem;
+  }
+
+  .info {
+    flex-direction: column;
+  }
+
+  .links {
+    justify-content: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

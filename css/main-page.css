@@ -61,15 +61,22 @@
   opacity: 0.6;
 }
 
+.input-color:focus {
+  outline: none;
+}
+
 input:focus {
   outline: none;
 }
 
 .input-color::-webkit-color-swatch {
   border-radius: 5px;
-  padding-inline: 2rem;
-  height: 1.8rem;
-  margin-top: -0.3rem;
+  padding: 0.5rem 1rem;
+}
+
+input[type="color" i] {
+  height: inherit;
+  width: inherit;
 }
 
 .svg-theme {
@@ -80,6 +87,10 @@ input:focus {
 .svg-sun {
   stroke: var(--color-text-secondary);
   stroke-width: 3;
+}
+
+.colorpick-eyedropper-input-trigger {
+  display: none;
 }
 
 /* ///////////////////////////////////// main page */
@@ -150,7 +161,7 @@ body {
   color: var(--color-text-primary);
 }
 
-.buttons-sections {
+.buttons-sections-main {
   display: none;
 }
 

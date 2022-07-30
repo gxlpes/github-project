@@ -1,5 +1,6 @@
 const input = document.querySelector(".userInput");
 const btnSearch = document.querySelector(".btn-search");
+const containerButtons = document.querySelector(".buttons-sections-main");
 
 const userInfoContainer = document.querySelector(".user-page");
 
@@ -14,13 +15,11 @@ const userInfoContainer = document.querySelector(".user-page");
 // const company = document.querySelector(".githubCompany");
 // const locat = document.querySelector(".githubLocation");
 
-btnSearch.addEventListener("click", getGitHubUserInfo);
-
 document.body.addEventListener("keypress", function (event) {
   if (event.key == "Enter") btnSearch.click();
 });
 
-async function getGitHubUserInfo() {
+btnSearch.addEventListener("click", async function getGitHubUserInfo() {
   const url = `https://api.github.com/users/${input.value}`;
 
   async function getUrl() {
@@ -55,11 +54,12 @@ async function getGitHubUserInfo() {
         <p class="githubBio">${data.bio}</p>
       </div>
     </div>
+
     <div class="content-page">
       <div class="info">
-        <p class="githubRepo git-info">${data.public_repos} repositories created</p>
-        <p class="githubJoin git-info">Joined in ${month1}/${year1}</p>
-        <p class="githubUpdate git-info">Last update in ${month2}/ ${year2}</p>
+        <p class="githubRepo git-info">Repos ${data.public_repos}</p>
+        <p class="githubJoin git-info">Joined ${month1}/${year1}</p>
+        <p class="githubUpdate git-info">Updated ${month2}/ ${year2}</p>
       </div>
       <div class="links">
         <div class="first-column">
@@ -103,9 +103,11 @@ async function getGitHubUserInfo() {
           </div>
         </div> 
       </div>
-    </div>`;
+    </div>  
+    `;
 
     userInfoContainer.insertAdjacentHTML("beforeend", htmlUser);
+    containerButtons.style.display = "flex";
   }
   getUrl();
-}
+});
