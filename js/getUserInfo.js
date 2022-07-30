@@ -20,32 +20,33 @@ document.body.addEventListener("keypress", function (event) {
 });
 
 btnSearch.addEventListener("click", async function getGitHubUserInfo() {
-  const url = `https://api.github.com/users/${input.value}`;
+  if (input.value.length != 0) {
+    const url = `https://api.github.com/users/${input.value}`;
 
-  async function getUrl() {
-    const response = await fetch(url);
-    const data = await response.json();
+    async function getUrl() {
+      const response = await fetch(url);
+      const data = await response.json();
 
-    const date1 = new Date(data.created_at);
-    const month1 = date1.toLocaleString("en-US", { month: "short" });
-    const year1 = date1.getFullYear();
+      const date1 = new Date(data.created_at);
+      const month1 = date1.toLocaleString("en-US", { month: "short" });
+      const year1 = date1.getFullYear();
 
-    const date2 = new Date(data.updated_at);
-    const month2 = date2.toLocaleString("en-US", { month: "short" });
-    const year2 = date2.getFullYear();
+      const date2 = new Date(data.updated_at);
+      const month2 = date2.toLocaleString("en-US", { month: "short" });
+      const year2 = date2.getFullYear();
 
-    // user.innerHTML = data.name;
-    // username.innerHTML = `@${data.login}`;
-    // gitbio.innerHTML = data.bio;
-    // repo.innerHTML = `${data.public_repos} repositories created`;
-    // joined.innerHTML = `Joined in ${month1}/${year1}`;
-    // update.innerHTML = `Last update in ${month2}/${year2}`;
-    // website.innerHTML = data.blog === "" || data.blog === null ? "No website" : data.blog;
-    // twitter.innerHTML = data.twitter_username === "" || data.twitter_username === null ? "No Twitter" : data.twitter_username;
-    // company.innerHTML = data.company === "" || data.company === null ? "No website" : data.company;
-    // locat.innerHTML = data.location === " " || data.location === null ? "No location" : data.location;
+      // user.innerHTML = data.name;
+      // username.innerHTML = `@${data.login}`;
+      // gitbio.innerHTML = data.bio;
+      // repo.innerHTML = `${data.public_repos} repositories created`;
+      // joined.innerHTML = `Joined in ${month1}/${year1}`;
+      // update.innerHTML = `Last update in ${month2}/${year2}`;
+      // website.innerHTML = data.blog === "" || data.blog === null ? "No website" : data.blog;
+      // twitter.innerHTML = data.twitter_username === "" || data.twitter_username === null ? "No Twitter" : data.twitter_username;
+      // company.innerHTML = data.company === "" || data.company === null ? "No website" : data.company;
+      // locat.innerHTML = data.location === " " || data.location === null ? "No location" : data.location;
 
-    const htmlUser = ` 
+      const htmlUser = ` 
     <div class="header-page">
       <div class="githubPhoto"><img src="${data.avatar_url}"></div>
       <div class="header-page-content">
@@ -106,8 +107,9 @@ btnSearch.addEventListener("click", async function getGitHubUserInfo() {
     </div>  
     `;
 
-    userInfoContainer.insertAdjacentHTML("beforeend", htmlUser);
-    containerButtons.style.display = "flex";
+      userInfoContainer.insertAdjacentHTML("beforeend", htmlUser);
+      containerButtons.style.display = "flex";
+    }
+    getUrl();
   }
-  getUrl();
 });

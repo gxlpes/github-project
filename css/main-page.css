@@ -108,7 +108,7 @@ body {
 
 .main-container {
   height: 100vh;
-  margin-top: -1rem;
+  margin-top: -3rem;
   letter-spacing: -0.1rem;
   color: var(--color-text-secondary);
   display: flex;

@@ -34,6 +34,7 @@ body {
   align-items: center;
   max-width: 75vw;
   margin-inline: auto;
+  margin-top: -3rem;
 }
 
 .header-page {
@@ -78,8 +79,15 @@ img {
   padding: 2rem;
   border-radius: 8px;
   text-align: center;
+  justify-content: content;
   display: flex;
   align-items: center;
+}
+
+.githubRepo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .links {
@@ -112,6 +120,12 @@ svg {
 .link-sections {
   text-decoration: none;
   color: var(--color-text-secondary);
+  background-color: var(--color-main);
+  filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.284));
+  padding: 0.2rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 400;
+  color: var(--color-text-primary);
 }
 
 @media screen and (max-width: 768px) {

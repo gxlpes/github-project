@@ -1,6 +1,8 @@
 const containerResultsRepos = document.querySelector(".containerResultsRepos");
 
-document.querySelector(".repos-btn").addEventListener("click", getGitHubUserRepos);
+const reposBtn = document.querySelector(".repos-btn");
+
+reposBtn.addEventListener("click", getGitHubUserRepos);
 
 let x = 0;
 let y = 5;
@@ -77,6 +79,8 @@ window.addEventListener("scroll", () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
   if (clientHeight + scrollTop >= scrollHeight - 2) {
-    getGitHubUserRepos();
+    if (reposBtn.clicked) {
+      getGitHubUserRepos();
+    }
   }
 });
