@@ -3,16 +3,25 @@ document.querySelector(".return").addEventListener("click", () => {
 });
 
 document.querySelector(".btn-search").addEventListener("click", () => {
+  const input = document.querySelector(".userInput");
   const mainContainer = document.querySelector(".main-container");
-  const userContainer = document.querySelector(".user-page");
-  userContainer.style.display = "flex";
 
-  window.setTimeout(function () {
-    userContainer.style.opacity = 1;
-  }, 0);
+  if (input.value.length != 0) {
+    const mainContainer = document.querySelector(".main-container");
+    const userContainer = document.querySelector(".user-page");
+    userContainer.style.display = "flex";
 
-  mainContainer.classList.add("hidden");
-  setInterval((mainContainer.style.display = "none"), 5000);
+    window.setTimeout(function () {
+      userContainer.style.opacity = 1;
+    }, 0);
+
+    mainContainer.classList.add("hidden");
+    setInterval((mainContainer.style.display = "none"), 5000);
+  } else {
+    const paraAlert = document.createElement("p");
+    paraAlert.innerHTML = "<b>Input wrong!</b>";
+    mainContainer.insertAdjacentHTML("afterbegin", paraAlert);
+  }
 });
 
 const toggle = function (e) {

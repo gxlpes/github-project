@@ -89,7 +89,9 @@ img {
   align-items: center;
 }
 
-.githubRepo {
+.githubRepo,
+.githubJoin,
+.githubUpdate {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,6 +102,16 @@ img {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.info-user {
+  word-break: break-word;
+  text-decoration: none;
+  color: white;
+}
+
+.info-user:hover {
+  cursor: pointer;
 }
 
 svg {
