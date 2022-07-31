@@ -150,6 +150,10 @@ svg {
   opacity: 0.7;
 }
 
+.anim {
+  transition: all 1s ease-in-out;
+}
+
 @media screen and (max-width: 768px) {
   .user-page {
     width: unset;

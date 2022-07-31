@@ -1,30 +1,60 @@
+/////////////////////////////////////////////////// button to reload page (button return)
+document.querySelector(".return").addEventListener("click", () => {
+  location.reload();
+});
+
+/////////////////////////////////////////////////// get github user information
 const input = document.querySelector(".userInput");
 const btnSearch = document.querySelector(".btn-search");
 const containerButtons = document.querySelector(".buttons-sections-main");
-
+const mainContainer = document.querySelector(".main-container");
 const userInfoContainer = document.querySelector(".user-page");
 
 document.body.addEventListener("keypress", function (event) {
   if (event.key == "Enter") btnSearch.click();
 });
 
-btnSearch.addEventListener("click", async function getGitHubUserInfo() {
+btnSearch.addEventListener("click", getGitHubUserInfo);
+
+function getGitHubUserInfo() {
   if (input.value.length != 0) {
+    //// get user input length
     const url = `https://api.github.com/users/${input.value}`;
-
     async function getUrl() {
-      const response = await fetch(url);
-      const data = await response.json();
+      try {
+        const response = await fetch(url);
 
-      const date1 = new Date(data.created_at);
-      const month1 = date1.toLocaleString("en-US", { month: "short" });
-      const year1 = date1.getFullYear();
+        if (!response.ok) {
+          //// if the fetch return error
+          const paraAlert = document.createElement("p");
+          paraAlert.innerHTML = "<b>User not found!</b>";
+          mainContainer.appendChild(paraAlert);
+          setInterval(() => {
+            paraAlert.remove();
+          }, 2000);
+        } else {
+          userInfoContainer.style.display = "flex";
 
-      const date2 = new Date(data.updated_at);
-      const month2 = date2.toLocaleString("en-US", { month: "short" });
-      const year2 = date2.getFullYear();
+          window.setTimeout(function () {
+            userInfoContainer.style.opacity = 1;
+          }, 0);
 
-      const htmlUser = ` 
+          mainContainer.classList.add("hidden");
+          setInterval((mainContainer.style.display = "none"), 5000);
+
+          userInfoContainer.style.display = "flex";
+
+          const data = await response.json();
+
+          const date1 = new Date(data.created_at);
+          const month1 = date1.toLocaleString("en-US", { month: "short" });
+          const year1 = date1.getFullYear();
+
+          const date2 = new Date(data.updated_at);
+          const month2 = date2.toLocaleString("en-US", { month: "short" });
+          const year2 = date2.getFullYear();
+
+          const htmlUser = ` 
     <div class="header-page">
       <div class="githubPhoto"><img src="${data.avatar_url}"></div>
       <div class="header-page-content">
@@ -63,8 +93,8 @@ btnSearch.addEventListener("click", async function getGitHubUserInfo() {
               />
             </svg>
             <a href="${data.blog}" target="_blank" class="info-user githubWebsite">${
-        data.blog === "" || data.blog === null ? "No website" : data.blog
-      }</a>
+            data.blog === "" || data.blog === null ? "No website" : data.blog
+          }</a>
           </div>
         </div>
         <div class="second-column">
@@ -89,9 +119,21 @@ btnSearch.addEventListener("click", async function getGitHubUserInfo() {
     </div>  
     `;
 
-      userInfoContainer.insertAdjacentHTML("afterbegin", htmlUser);
-      containerButtons.style.display = "flex";
+          userInfoContainer.insertAdjacentHTML("afterbegin", htmlUser);
+          containerButtons.style.display = "flex";
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
     getUrl();
+  } else {
+    //// if the input is blank
+    const paraAlert = document.createElement("p");
+    paraAlert.innerHTML = "<b class='anim'>A blank input is not allowed!</b>";
+    mainContainer.appendChild(paraAlert);
+    setInterval(() => {
+      paraAlert.remove();
+    }, 2000);
   }
-});
+}
