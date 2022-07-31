@@ -3,6 +3,16 @@ document.querySelector(".return").addEventListener("click", () => {
   location.reload();
 });
 
+////////////////////////////////////////////////// function to alert
+function alertNotification(content) {
+  const paraAlert = document.createElement("p");
+  paraAlert.innerHTML = content;
+  mainContainer.appendChild(paraAlert);
+  setInterval(() => {
+    paraAlert.remove();
+  }, 2000);
+}
+
 /////////////////////////////////////////////////// get github user information
 const input = document.querySelector(".userInput");
 const btnSearch = document.querySelector(".btn-search");
@@ -26,12 +36,7 @@ function getGitHubUserInfo() {
 
         if (!response.ok) {
           //// if the fetch return error
-          const paraAlert = document.createElement("p");
-          paraAlert.innerHTML = "<b>User not found!</b>";
-          mainContainer.appendChild(paraAlert);
-          setInterval(() => {
-            paraAlert.remove();
-          }, 2000);
+          alertNotification("<b>User not found!</b>");
         } else {
           userInfoContainer.style.display = "flex";
 
@@ -122,18 +127,14 @@ function getGitHubUserInfo() {
           userInfoContainer.insertAdjacentHTML("afterbegin", htmlUser);
           containerButtons.style.display = "flex";
         }
-      } catch (err) {
-        console.log(err);
+      } catch {
+        //// check the network connection
+        alertNotification("<b class='anim'>Check your network!</b>");
       }
     }
     getUrl();
   } else {
     //// if the input is blank
-    const paraAlert = document.createElement("p");
-    paraAlert.innerHTML = "<b class='anim'>A blank input is not allowed!</b>";
-    mainContainer.appendChild(paraAlert);
-    setInterval(() => {
-      paraAlert.remove();
-    }, 2000);
+    alertNotification("<b class='anim'>A blank input is not allowed!</b>");
   }
 }
