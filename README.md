@@ -1,4 +1,4 @@
-# GitHub UserSearch Project
+# GitHub UserSearch
 
 <b>Live demo: https://reliable-sfogliatella-c6f24e.netlify.app/ </b>
 
